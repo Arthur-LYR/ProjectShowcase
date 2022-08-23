@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>COVID 19 Booking System</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="10">
+</head>
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">
+              <a class="mdl-layout-title mdl-navigation__link" href="{% url 'index' %}">COVID 19 Booking System</a>
+          </span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="{% url 'profile' %}">{{ username }}</a>
+          </nav>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--4-col"></div>
+              <div class="mdl-cell mdl-cell--4-col" align="center"><h2>Admin Interface</h2></div>
+              <div class="mdl-cell mdl-cell--4-col"></div>
+            </div>
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--4-col"></div>
+              <div class="mdl-cell mdl-cell--4-col" align="center"><p>{{ delete_warning }}</p></div>
+              <div class="mdl-cell mdl-cell--4-col"></div>
+            </div>
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--12-col" align="center" style="overflow: auto">
+                  <table class="mdl-data-table">
+                      <tr>
+                          <th>Booking ID</th>
+                          <th>Booking PIN</th>
+                          <th>Made By</th>
+                          <th>Testing Site</th>
+                          <th>Start Date and Time</th>
+                          <th>Home?</th>
+                          <th>Status</th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                      {% for booking, i in all_bookings %}
+                          <tr>
+                              <td>{{booking.id}}</td>
+                              <td>{{booking.smsPin}}</td>
+                              <td>{{booking.customer.userName}}</td>
+                              <td>{{booking.testingSite.name}}</td>
+                              <td>{{booking.startTime}}</td>
+                              <td>{{booking.notes}}</td>
+                              <td>{{booking.status}}</td>
+                              <td>
+                                  <form action = "" method = "post">
+                                      {% csrf_token %}
+                                      <input name={{"edit"|add:i}} class="mdl-button mdl-js-button mdl-button--raised" type="submit" value="EDIT">
+                                  </form>
+                              </td>
+                              <td>
+                                  <form action = "" method = "post">
+                                      {% csrf_token %}
+                                      <input name={{"revert"|add:i}} class="mdl-button mdl-js-button mdl-button--raised" type="submit" value="REVERT">
+                                  </form>
+                              </td>
+                              <td>
+                                  <form action = "" method = "post">
+                                      {% csrf_token %}
+                                      <input name={{"cancel"|add:i}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" value="CANCEL">
+                                  </form>
+                              </td>
+                              <td>
+                                  <form action = "" method = "post">
+                                      {% csrf_token %}
+                                      <input name={{"delete"|add:i}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" value="DELETE">
+                                  </form>
+                              </td>
+                          </tr>
+                      {% endfor %}
+                  </table>
+              </div>
+            </div>
+        </div>
+      </main>
+    </div>
+</body>
+</html>
