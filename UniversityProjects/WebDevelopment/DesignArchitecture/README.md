@@ -1,6 +1,6 @@
 # Software Engineering Design and Architecture
 
-NOTE: This project will not be run anymore as the API it relies on is now deactivated. The project involved me working in a pair to develop a web app that applies good software engineering design patterns and OOP. A class diagram was also designed as part of the project.
+NOTE: This project will not run anymore as the API it relies on is now deactivated. The project involved me working in a pair to develop a web app that applies good software engineering design patterns and OOP. A class diagram was also designed as part of the project.
 
 ## Setup
 1. Activate virtualenv. Installation may only be done once.
