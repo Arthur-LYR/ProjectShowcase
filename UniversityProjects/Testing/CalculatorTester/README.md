@@ -1,4 +1,4 @@
-# FIT2107_S2_2021
+# Calculator Tester
 
 NOTE: This project will not run anymore as it relies on an API that is now deactivated. We had to write a program that performed some funcionality and then write unittests for them. A gitlab file is present because all projects used Gitlab for version control.
 
