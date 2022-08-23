@@ -1,0 +1,27 @@
+stages:
+    - build
+    - test
+
+build:
+    stage: build
+    tags:
+        - fit2107-runner
+    image: python:3.8-alpine
+    script:
+        - echo "Building"
+        - pip3 install --upgrade pip
+        - pip install -r requirements.txt
+        - python3 app/calculator_form.py
+        - python3 app/calculator.py
+
+test:
+    stage: test
+    image: python:3.8-alpine
+    script:
+        - echo "Testing"
+        - pip3 install --upgrade pip
+        - pip install -r requirements.txt
+        - coverage run -m unittest test_calculator_form/test_validate_BatteryPackCapacity.py test_calculator_form/test_validate_InitialCharge.py test_calculator_form/test_validate_FinalCharge.py test_calculator_form/test_validate_StartDate.py test_calculator_form/test_validate_StartTime.py test_calculator_form/test_validate_ChargerConfiguration.py test_calculator_form/test_validate_PostCode.py test_calculator_form/test_isInt.py
+        - coverage report -m
+        - coverage run -m unittest test_calculator/test_is_surcharge_day.py test_calculator/test_is_peak_hour.py test_calculator/test_get_base_price.py test_calculator/test_get_power.py test_calculator/test_str_to_datetime.py test_calculator/test_dates_between.py test_calculator/test_hours_between.py test_calculator/test_get_reference_dates.py test_calculator/test_get_solar_proportion.py test_calculator/test_get_sun_hour.py test_calculator/test_get_sunrise_time.py test_calculator/test_get_sunset_time.py test_calculator/test_get_cloud_cover.py test_calculator/test_time_calculation.py test_calculator/test_cost_calculation_1.py test_calculator/test_cost_calculation_2.py test_calculator/test_cost_calculation_3.py
+        - coverage report -m
