@@ -1,0 +1,33 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.right {
+  display: block;
+  margin-left: auto;
+  width: 50%;
+}
+.demo-card-square.mdl-card {
+  width: 100%;
+  height: 100%;
+  background-color:#2ebde8;
+}
+.history-card-wide.mdl-card {
+  width: 100%;
+}
+.history-card-wide>.mdl-card__title {
+  color: rgb(10, 10, 10);
+  height: 150px;
+  background-color:#2ebde8;
+}
+.card-text {
+  color: #000000;
+}
+.button {
+  width: 100%;
+}
+hr {
+  border-top: 2px solid black;
+}

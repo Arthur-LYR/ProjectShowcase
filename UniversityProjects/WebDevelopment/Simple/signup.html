@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign up for an Account</title>
+    <!-- Import MDL -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/shared.css">
+    <link rel="icon" href="img/blackLogo.png">
+    <!-- import Mapbox library -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet'>
+    <!-- Import JS Libraries -->
+    <script src="libs/countries.js"></script>
+    <script src="libs/services.js"></script>
+</head>
+
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <img src="img/whiteLogo.png" alt="Logo" style="height:55px;width:55px;">
+                <span class="mdl-layout-title">Monash Airways</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="" id="profile"></a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <img src="img/blackLogo.png" alt="Logo" style="height:150px;width:150px;" class="center">
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html">Home</a>
+                <a class="mdl-navigation__link" href="" id="scheduled">Scheduled</a>
+                <a class="mdl-navigation__link" href="" id="history">History</a>
+                <a class="mdl-navigation__link" href="allRoutes.html">View All Routes</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--11-col">
+                    <h2>Sign Up</h2>
+                    <h5>Create an account to save your flight trips</h5>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input" type="text" id="username" onchange="checkUsername()">
+                        <label class="mdl-textfield__label" for="username">Username</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--7-col">
+                    <h5 style="color:red;"><span id="errorUsername"></span></h5>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input" type="text" id="email" onchange="checkEmail()">
+                        <label class="mdl-textfield__label" for="email">Email</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--7-col">
+                    <h5 style="color:red;"><span id="errorEmail"></span></h5>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder" onchange="checkPassword()">
+                        <input class="mdl-textfield__input" type="password" id="password">
+                        <label class="mdl-textfield__label" for="password">Password</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--7-col"> 
+                    <h5 style="color:red;"><span id="errorPassword"></span></h5>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label has-placeholder">
+                        <input class="mdl-textfield__input" type="password" id="passwordVerify" onchange="checkPasswordVerify()">
+                        <label class="mdl-textfield__label" for="passwordVerify">Verify Password</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--7-col">
+                    <h5 style="color:red;"><span id="errorPasswordVerify"></span></h5>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--2-col">
+                    <button class="mdl-button mdl-js-button mdl-button--raised button" onclick="backButton()">
+                        Back
+                    </button>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col"></div>
+                <div class="mdl-cell mdl-cell--2-col" id="accounts">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored button" onclick="createAccount()" id="createAcc">
+                        Create Account 
+                    </button>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--1-col"></div>
+                <div class="mdl-cell mdl-cell--3-col" id="bookWithoutAcc"></div>
+            </div>
+        </main>
+    </div>
+    <script src="js/shared.js"></script>
+    <script src="js/signup.js"></script>
+</body>
+
+</html>
